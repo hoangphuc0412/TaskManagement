@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Task Management
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-back-button></ion-back-button>
+      <ion-title size="large">
+        Task Management
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-list>
+    <ion-button href="/staff-list">Staff List</ion-button>
+    <ion-button href="/task-list">Task List</ion-button>
+    <ion-button href="/gantt">Gantt</ion-button>
+
+
+    <!-- <app-message *ngFor="let message of getMessages()" [message]="message"></app-message> -->
+  </ion-list>
+</ion-content>
