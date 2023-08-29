@@ -24,8 +24,8 @@ const routes: Routes = [
     loadChildren: () => import('./task-list/task-list.module').then( m => m.TaskListPageModule)
   },
   {
-    path: 'gantt',
-    loadChildren: () => import('./gantt/gantt.module').then( m => m.GanttPageModule)
+    path: 'ganttt',
+    loadChildren: () => import('./ganttt/gantt.module').then( m => m.GanttPageModule)
   },
 ];
 

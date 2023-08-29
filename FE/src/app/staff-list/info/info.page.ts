@@ -75,22 +75,30 @@ export class InfoPage implements OnInit {
   confirm() {
     this.isPopoverOpen = false;
 
-    console.log(this.FullName);
-    console.log(this.ShortName);
+    // console.log(this.Id_Staff);
+    // console.log(this.ShortName);
     var staff : Staff = {
                   Id_Staff: this.Id_Staff,
                   FullName: this.FullName,
                   ShortName: this.ShortName
                 }
                 console.log(staff);
-    if(this.FullName.length > 0 && this.ShortName.length > 0) {
-      this.dataService.confirmStaff(staff).subscribe(x => {
-        console.log(x);
-        // if(x) {
+    if(this.FullName.length > 0 && this.ShortName.length > 0 ) {
+      if(this.Id_Staff == 0) {
+        this.dataService.confirmStaff(staff).subscribe(x => {
+          // console.log(x);
+          // if(x) {
+            this.validation_messages  = 'Success';
+            this.isPopoverOpen = true;
+          // }
+        });
+      } else {
+        this.dataService.editStaff(this.Id_Staff, staff).subscribe(x => {
+          // console.log(x);
           this.validation_messages  = 'Success';
           this.isPopoverOpen = true;
-        // }
-      });
+        })
+      }
     } else {
       this.validation_messages  = 'Please fill empty field(s)';
       this.isPopoverOpen = true;

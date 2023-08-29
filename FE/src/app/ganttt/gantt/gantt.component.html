@@ -1,0 +1,26 @@
+<ion-header style="height: 80px; position: sticky; top: 0;">
+  <ion-list  style="height: 60px;" [inset]="true">
+      <ion-item [button]="true" [detail]="false" id="select-items">
+        <ion-label>Choose to search</ion-label>
+        <div slot="end" id="selected-items">{{ selectedText }}</div>
+      </ion-item>
+    </ion-list>
+  <!-- </ion-content> -->
+  
+  <ion-modal trigger="select-items" #modal>
+    <ng-template>
+      <app-typeahead
+        class="ion-page"
+        title="Choose to search"
+        [items]="items"
+        [selectedItems]="selected"
+        (selectionChange)="SelectionChanged($event)"
+        (selectionCancel)="modal.dismiss()"
+      ></app-typeahead>
+    </ng-template>
+  </ion-modal>
+  <ion-searchbar style="height: 20px" [debounce]="1000" (ionInput)="handleInput($event)" search-icon="search-circle"></ion-searchbar>
+</ion-header>
+<div style=" overflow: auto;">
+  <div style="margin-top: 31px; overflow: auto;" #gantt_here class='gantt-chart'></div>
+</div>

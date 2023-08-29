@@ -8,6 +8,7 @@ import { StaffListPageRoutingModule } from './staff-list-routing.module';
 
 import { StaffListPage } from './staff-list.page';
 import {HeaderModule} from '../header/header.module';
+import {TypeaheadModule} from '../typeahead/typeahead.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import {HeaderModule} from '../header/header.module';
     FormsModule,
     IonicModule,
     StaffListPageRoutingModule,
-    HeaderModule
+    HeaderModule,
+    TypeaheadModule
   ],
   declarations: [StaffListPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

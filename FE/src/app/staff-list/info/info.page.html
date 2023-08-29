@@ -6,41 +6,21 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- [formGroup]="formX" (ngSubmit)="tryRegister(formX.value)" -->
 <ion-content  [fullscreen]="true" padding class="form-content">
-  <!-- <form class="form" 
-  > -->
-
     <ion-item>
-      <ion-label position="floating" color="primary">FullName</ion-label>
+      <ion-label position="floating" color="primary">Full Name</ion-label>
       <ion-input type="text" [(ngModel)]="FullName"></ion-input>
     </ion-item>
-    <!-- <div class="validation-errors">
-      <ng-container *ngFor="let validation of validation_messages.email">
-        <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
-          {{ validation.message }}
-        </div>
-      </ng-container>
-    </div> -->
 
     <ion-item>
-      <ion-label position="floating" color="primary">ShortName</ion-label>
+      <ion-label position="floating" color="primary">Short Name</ion-label>
       <ion-input type="text" [(ngModel)]="ShortName"></ion-input>
     </ion-item>
-    <!-- <div class="validation-errors">
-      <ng-container *ngFor="let validation of validation_messages.password">
-        <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
-          {{ validation.message }}
-        </div>
-      </ng-container>
-    </div> -->
 
     <ion-button  class="submit-btn" expand="block" (click)="confirm()"  >Confirm</ion-button>
     <ion-button  class="submit-btn" expand="block" href="staff-list" >Back</ion-button>
     <label class="error-message">{{errorMessage}}</label>
     <label class="success-message">{{successMessage}}</label>
-  <!-- </form> -->
-  <!-- <p class="go-to-login">Already have an account? <a (click)="goLoginPage()">Try to Log In.</a></p> -->
 
 </ion-content>
 <ion-popover [isOpen]="isPopoverOpen">

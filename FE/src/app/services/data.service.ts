@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';  
 import { Observable } from 'rxjs';  
 import { map } from 'rxjs/operators'; 
-import { Staff } from '../interface';
+import { Staff, Task } from '../interface';
 
 export interface Message {
   fromName: string;
@@ -16,7 +16,7 @@ export interface Message {
   providedIn: 'root'
 })
 export class DataService {
-  url = 'https://localhost:44333/api/';  
+  url = 'https://localhost:44379/api/';  
 
   public messages: Message[] = [
     {
@@ -53,13 +53,13 @@ export class DataService {
   }
 
   public getStaffList(): Observable<any> {  
-    return this.http.get(this.url + 'staffs').pipe(      
+    return this.http.get(this.url + 'Staffs').pipe(      
       map(results => results)  
     );  
   }
 
   public getStaffById(Id_Staff: number): Observable<any> {  
-    return this.http.get(this.url + 'staffs/'+ Id_Staff).pipe(      
+    return this.http.get(this.url + 'Staffs/'+ Id_Staff).pipe(      
       map(results => results)  
     );  
   }  
@@ -69,4 +69,44 @@ export class DataService {
     
     return this.http.post<Staff>(this.url + 'Staffs', data);
   }  
+  public editStaff( id:number, data: Staff )  {  
+    // console.log(data);
+    
+      return this.http.put(this.url + `Staffs/${id}`, data);
+  }  
+  public deleteStaff( id:number)  {  
+    // console.log(data);
+    
+      return this.http.delete(this.url + `Staffs/${id}`);
+  }
+
+  public getTaskList(): Observable<any> {  
+    return this.http.get(this.url + 'Tasks').pipe(      
+      map(results => results)  
+    );  
+  }
+
+  public confirmTask(data: Task ): Observable<Task> {  
+    // console.log(data);
+    
+    return this.http.post<Task>(this.url + 'Tasks', data);
+    
+  }  
+  public editTask( id:number, data: Task )  {  
+    // console.log(data);
+    
+      return this.http.put(this.url + `Tasks/${id}`, data);
+  }  
+
+  public deleteTask( id:number)  {  
+    // console.log(data);
+    
+      return this.http.delete(this.url + `Tasks/${id}`);
+  }
+
+  // public getAssignedList(): Observable<any> {  
+  //   return this.http.get(this.url + 'StaffInTasks').pipe(      
+  //     map(results => results)  
+  //   );  
+  // }
 }
