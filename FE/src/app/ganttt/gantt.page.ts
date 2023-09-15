@@ -12,7 +12,7 @@ export class GanttPage implements OnInit {
   constructor( private dataService: DataService,
     ) { }
 
-  public assignedList: AssignedList[] = [];
+  // public assignedList: AssignedList[] = []; 
   public staffList: Staff[] = [];
   public taskList: Task[] = [];
 
@@ -23,10 +23,11 @@ export class GanttPage implements OnInit {
     // this.dataService.getTaskList().subscribe(data => {
     //   this.taskList = data;
     // });
-    // this.dataService.getAssignedList().subscribe(assignedList => {
-    //   this.assignedList = assignedList;
+    // this.dataService.getAssignedList(1).subscribe(assignedList => {
+    //   // this.assignedList = assignedList;
+    //   console.log(assignedList);
     // });
-
+    
     // for (let i = 0; i < this.assignedList.length; i++) {
 
     //   this.assignedList[i].FullName = this.staffList.find(a => a.Id_Staff === this.assignedList[i].Id_Staff)?.FullName

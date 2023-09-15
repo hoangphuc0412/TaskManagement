@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'ganttt',
     loadChildren: () => import('./ganttt/gantt.module').then( m => m.GanttPageModule)
   },
+  {
+    path: 'get-tasks-as-portable-doc-format',
+    loadChildren: () => import('./get-tasks-as-portable-doc-format/get-tasks-as-portable-doc-format.module').then( m => m.GetTasksAsPortableDocFormatPageModule)
+  },
 ];
 
 @NgModule({

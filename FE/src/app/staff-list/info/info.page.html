@@ -14,7 +14,7 @@
 
     <ion-item>
       <ion-label position="floating" color="primary">Short Name</ion-label>
-      <ion-input type="text" [(ngModel)]="ShortName"></ion-input>
+      <ion-input type="text" [(ngModel)]="addValue" [value]="ShortName"></ion-input>
     </ion-item>
 
     <ion-button  class="submit-btn" expand="block" (click)="confirm()"  >Confirm</ion-button>

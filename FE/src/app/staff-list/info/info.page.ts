@@ -23,6 +23,7 @@ export class InfoPage implements OnInit {
   FullName : string = '';
   successMessage: string = '';
   ShortName : string = '';
+  addValue : string = '';
   Id_Staff: any = '';
   isPopoverOpen: boolean = false;
   
@@ -43,20 +44,6 @@ export class InfoPage implements OnInit {
         }
     }); 
     
-
-    console.log(this.Id_Staff);
-    console.log(this.Id_Staff);
-    console.log(this.FullName);
-    console.log(this.ShortName);
-
-    // this.formX = this.formBuilder.group({
-    //   FullName: new FormControl('', Validators.compose([
-    //     Validators.required,
-    //   ])),
-    //   ShortName: new FormControl('', Validators.compose([
-    //     Validators.required
-    //   ])),
-    // });
   }
 
   tryRegister(value: any) {
@@ -75,16 +62,16 @@ export class InfoPage implements OnInit {
   confirm() {
     this.isPopoverOpen = false;
 
-    // console.log(this.Id_Staff);
-    // console.log(this.ShortName);
     var staff : Staff = {
                   Id_Staff: this.Id_Staff,
                   FullName: this.FullName,
-                  ShortName: this.ShortName
+                  ShortName: this.Id_Staff == 0 ? this.addValue : this.ShortName
                 }
+                
                 console.log(staff);
-    if(this.FullName.length > 0 && this.ShortName.length > 0 ) {
+    if(this.FullName.length > 0 && this.addValue.length > 0 ) {
       if(this.Id_Staff == 0) {
+        
         this.dataService.confirmStaff(staff).subscribe(x => {
           // console.log(x);
           // if(x) {

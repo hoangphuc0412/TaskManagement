@@ -23,6 +23,7 @@ export class StaffListPage implements OnInit {
   public temp: Staff[] = [];
   selectedText = '0 Items';
   selected: string[] = [];
+  selectedDeleteList: number[] = [];
 
   items: Item[] = [
     { text: 'Full Name', value: 'FullName' },
@@ -30,7 +31,7 @@ export class StaffListPage implements OnInit {
   ];
 
   ngOnInit() {
-    // this.staffList = 
+
     this.dataService.getStaffList().subscribe(data => {
       this.staffList = data;
     })
@@ -47,7 +48,6 @@ export class StaffListPage implements OnInit {
     if(query.length > 0) { 
 
       this.staffList = this.handleSelectedSearch(query);
-      // this.staffList = this.staffList.filter((d) => d.FullName.toLowerCase().indexOf(query) > -1);
     } else {
       this.dataService.getStaffList().subscribe(data => {
         this.staffList = data;
@@ -99,4 +99,21 @@ export class StaffListPage implements OnInit {
     this.modal.dismiss();
   }
   
+  checkboxDeleteChange(id: any) {
+    if(this.selectedDeleteList.includes(id)) {
+      this.selectedDeleteList = this.selectedDeleteList.filter((d) => d!== id);
+    } else {
+      this.selectedDeleteList.push(id);
+    }
+
+    console.log(this.selectedDeleteList);
+
+  }
+  BulkDelete() {
+    this.dataService.deleteStaffs(this.selectedDeleteList).subscribe((data) => {
+
+      this.staffList = this.staffList.filter((staff) => !this.selectedDeleteList.includes(staff.Id_Staff));
+    })  
+  }
+
 }

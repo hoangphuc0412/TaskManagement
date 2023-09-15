@@ -20,6 +20,11 @@ export interface Task {
   Progress: number;
   IsUnscheduled: boolean;
 }
+export interface TaskByUser extends Task {
+  Id_Assign: number;
+  Id_Staff: number;
+  FullName: string;
+}
 export class TaskGantt {
   id!: number;
   start_date!: string;
@@ -29,7 +34,7 @@ export class TaskGantt {
   parent!: number;
 }
 export class AssignedList {
-  Id_Assign!: number;
+  Id_List!: number;
   Id_Staff!: number;
   Id_Task!: number;
   // TaskName!: string;
@@ -40,3 +45,9 @@ export class StaffInTasks {
   TaskName!: string;
   FullName!: string;
 }
+
+export class User {
+  key!: number;
+  label!: string;
+}
+

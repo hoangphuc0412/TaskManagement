@@ -7,7 +7,7 @@ describe('InfoPage', () => {
 
   beforeEach(async(() => {
     fixture = TestBed.createComponent(InfoPage);
-    component = fixture.componentInstance;
+    component = fixture.componentInstance;-
     fixture.detectChanges();
   }));
 
