@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TaskManegementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="Id_Staff" />
+    </Key>
+    <Property Name="Id_Staff" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ShortName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="StaffInTasks" Relationship="Self.FK_StaffInTask_Staff" FromRole="Staff" ToRole="StaffInTask" />
+  </EntityType>
+  <EntityType Name="StaffInTask">
+    <Key>
+      <PropertyRef Name="Id_List" />
+    </Key>
+    <Property Name="Id_List" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Staff" Type="Int32" Nullable="false" />
+    <Property Name="Id_Task" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Staff" Relationship="Self.FK_StaffInTask_Staff" FromRole="StaffInTask" ToRole="Staff" />
+    <NavigationProperty Name="Task" Relationship="Self.FK_StaffInTask_Task" FromRole="StaffInTask" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="Id_Task" />
+    </Key>
+    <Property Name="Id_Task" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Parent" Type="Int32" />
+    <Property Name="Label" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TaskName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="Duration" Type="Time" Precision="7" />
+    <Property Name="Progress" Type="Int32" />
+    <Property Name="IsUnscheduled" Type="Boolean" />
+    <NavigationProperty Name="StaffInTasks" Relationship="Self.FK_StaffInTask_Task" FromRole="Task" ToRole="StaffInTask" />
+  </EntityType>
+  <Association Name="FK_StaffInTask_Staff">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+    <End Role="StaffInTask" Type="Self.StaffInTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="Id_Staff" />
+      </Principal>
+      <Dependent Role="StaffInTask">
+        <PropertyRef Name="Id_Staff" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StaffInTask_Task">
+    <End Role="Task" Type="Self.Task" Multiplicity="1" />
+    <End Role="StaffInTask" Type="Self.StaffInTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Id_Task" />
+      </Principal>
+      <Dependent Role="StaffInTask">
+        <PropertyRef Name="Id_Task" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Staffs" EntityType="Self.Staff" />
+    <EntitySet Name="StaffInTasks" EntityType="Self.StaffInTask" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Tasks" EntityType="Self.Task" />
+    <AssociationSet Name="FK_StaffInTask_Staff" Association="Self.FK_StaffInTask_Staff">
+      <End Role="Staff" EntitySet="Staffs" />
+      <End Role="StaffInTask" EntitySet="StaffInTasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StaffInTask_Task" Association="Self.FK_StaffInTask_Task">
+      <End Role="Task" EntitySet="Tasks" />
+      <End Role="StaffInTask" EntitySet="StaffInTasks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,2 @@
+C:\Users\84949\OneDrive\Documents\GitHub\TaskManagement\TasksManager\obj\Debug\TasksManager.csproj.CoreCompileInputs.cache
+C:\Users\84949\OneDrive\Documents\GitHub\TaskManagement\TasksManager\obj\Debug\TasksManager.csproj.AssemblyReference.cache
